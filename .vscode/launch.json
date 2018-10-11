@@ -21,13 +21,6 @@
             "request": "launch",
             "preLaunchTask": "tsc",
             "file": "${workspaceFolder}/index.html"
-        },
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "localhost に対して Chrome を起動",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
         }
     ]
 }
