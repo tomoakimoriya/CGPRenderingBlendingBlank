@@ -11,7 +11,8 @@
             "preLaunchTask": "tsc",
             "file": "${workspaceFolder}/index.html",
             "runtimeArgs": [
-                "--allow-file-access-from-files"
+                "--allow-file-access-from-files",
+                "--disable-web-security"
            ]
         },
         {
