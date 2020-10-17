@@ -97,29 +97,11 @@ class ThreeJSContainer {
 
 
         const addFlares = (pos: THREE.Vector3) => {
-            const plane = new THREE.Mesh(this.geometry, this.material);
-            plane.lookAt(this.camera.position); //板をカメラの方に向けておく
-            plane.position.copy(pos);
-            this.flares.push(plane);
-            this.scene.add(plane);
+
         }
 
         const updateFlares = () => {
-            for (let i = 0; i < this.flares.length; i++)
-            {
-                this.flares[i].scale.x -= 0.01;
-                this.flares[i].scale.y -= 0.01;
-                this.flares[i].scale.z -= 0.01;
-                if (this.flares[i].scale.x <= 0)
-                {
-                    this.scene.remove(this.flares[i]);
-                    this.flares.slice(i,1);
-                }
-                //i番目の板のscaleを小さくする
-                //もしscaleが0以下なら
-                    //flares配列のi番目の板をシーンから消す
-                    //配列からも消す
-            }
+
         }
 
         // 毎フレームのupdateを呼んで，更新
