@@ -8,7 +8,7 @@ import * as Physijs from "physijs-webpack";
 
 class ThreeJSContainer {
     private scene: THREE.Scene;
-    private geometry: THREE.Geometry;
+    private geometry: THREE.BufferGeometry;
     private material: THREE.Material;
     private light: THREE.Light;
 
@@ -16,10 +16,6 @@ class ThreeJSContainer {
     private texture: THREE.Texture;
     private rotAngle: number = 0;
     private rotRadius: number = 3;
-
-    private line: THREE.LineSegments;
-    private linegeometries: THREE.Geometry[];
-    private linematerials: THREE.LineBasicMaterial[];
 
     private flares: THREE.Object3D[];
 
@@ -68,33 +64,27 @@ class ThreeJSContainer {
         this.light.position.set(lvec.x, lvec.y, lvec.z);
         this.scene.add(this.light);
 
-        this.linegeometries = [
-            new THREE.Geometry(),
-            new THREE.Geometry(),
-            new THREE.Geometry()
-        ];
-        this.linegeometries[0].vertices.push(
-            new THREE.Vector3(0, 0, 0),
-            new THREE.Vector3(3, 0, 0)
-        );
-        this.linegeometries[1].vertices.push(
-            new THREE.Vector3(0, 0, 0),
-            new THREE.Vector3(0, 3, 0)
-        );
-        this.linegeometries[2].vertices.push(
-            new THREE.Vector3(0, 0, 0),
-            new THREE.Vector3(0, 0, 3)
-        );
-        this.linematerials = [
-            new THREE.LineBasicMaterial({ color: 0xff0000 }),
-            new THREE.LineBasicMaterial({ color: 0x00ff00 }),
-            new THREE.LineBasicMaterial({ color: 0x0000ff })
-        ];
-        for (let i = 0; i < 3; i++) {
-            const line = new THREE.LineSegments(this.linegeometries[i], this.linematerials[i]);
-            this.scene.add(line);
-        }
-
+        const xaxisvs = new Float32Array([
+            0, 0, 0,
+            3, 0, 0
+        ]);
+        const yaxisvs = new Float32Array([
+            0, 0, 0,
+            0, 3, 0
+        ]);
+        const zaxisvs = new Float32Array([
+            0, 0, 0,
+            0, 0, 3
+        ]);
+        const xageom = new THREE.BufferGeometry();
+        xageom.setAttribute( 'position', new THREE.BufferAttribute( xaxisvs, 3 ) );
+        const yageom = new THREE.BufferGeometry();
+        yageom.setAttribute( 'position', new THREE.BufferAttribute( yaxisvs, 3 ) );
+        const zageom = new THREE.BufferGeometry();
+        zageom.setAttribute( 'position', new THREE.BufferAttribute( zaxisvs, 3 ) );
+        this.scene.add(new THREE.LineSegments(xageom, new THREE.LineBasicMaterial({ color: 0xff0000 })));
+        this.scene.add(new THREE.LineSegments(yageom, new THREE.LineBasicMaterial({ color: 0x00ff00 })));
+        this.scene.add(new THREE.LineSegments(zageom, new THREE.LineBasicMaterial({ color: 0x0000ff })));
 
         const addFlares = (pos: THREE.Vector3) => {
 
