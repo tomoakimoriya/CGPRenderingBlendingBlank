@@ -19,7 +19,7 @@ class ThreeJSContainer {
     private flares: THREE.Object3D[];
 
     constructor() {
-        this.scene = new THREE.Scene();
+
     }
 
     // 画面部分の作成(表示する枠ごとに)
@@ -33,6 +33,8 @@ class ThreeJSContainer {
         this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
         const orbitControls = new OrbitControls(this.camera, renderer.domElement);
+
+        this.createScene();
 
         // 毎フレームのupdateを呼んで，render
         // reqest... により次フレームを呼ぶ
