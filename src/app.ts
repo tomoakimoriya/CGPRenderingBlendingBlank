@@ -53,6 +53,8 @@ class ThreeJSContainer {
 
     // シーンの作成(全体で1回)
     public createScene = () => {
+        this.scene = new THREE.Scene();
+
         this.flares = [];
         const textureLoader = new THREE.TextureLoader();
         this.texture = textureLoader.load("glow.png");
