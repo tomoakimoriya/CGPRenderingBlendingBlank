@@ -3,17 +3,17 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 
 class ThreeJSContainer {
-    private scene: THREE.Scene;
-    private geometry: THREE.BufferGeometry;
-    private material: THREE.Material;
-    private light: THREE.Light;
+    private scene!: THREE.Scene;
+    private geometry!: THREE.BufferGeometry;
+    private material!: THREE.Material;
+    private light!: THREE.Light;
 
-    private camera: THREE.Camera;
-    private texture: THREE.Texture;
+    private camera!: THREE.Camera;
+    private texture!: THREE.Texture;
     private rotAngle: number = 0;
     private rotRadius: number = 3;
 
-    private flares: THREE.Object3D[];
+    private flares!: THREE.Object3D[];
 
     constructor() {
 
